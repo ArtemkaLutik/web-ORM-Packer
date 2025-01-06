@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar');
-    const convertButton = document.querySelector('.BtnDefault');
+    const convertButton = document.querySelector('#BtmConvert');
+    const clearButton = document.querySelector('#BtnClear');
 
     // Initialize drag and drop fields
     const dragDropFields = document.querySelectorAll('.SimpleDragDropField');
 
     dragDropFields.forEach((field) => {
+        field.setAttribute('data-label', field.textContent.trim()); // Save the default label
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = 'image/png, image/jpeg';
+        fileInput.accept = 'image/png, image/jpeg, image/exr, image/tga';
         fileInput.style.display = 'none';
         field.appendChild(fileInput);
 
@@ -47,9 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    clearButton.addEventListener('click', () => {
+        dragDropFields.forEach((field) => {
+            field.file = null;
+            field.textContent = field.getAttribute('data-label') || ''; // Reset to the default label
+            field.style.borderColor = '#81807E'; // Reset border color
+            console.log('[INFO] Field cleared');
+        });
+        progressBar.style.width = '0%'; // Reset progress bar
+    });
+
     function handleFileSelection(field, file) {
         // Validate file type
-        const validTypes = ['image/png', 'image/jpeg'];
+        const validTypes = ['image/png', 'image/jpeg', 'image/exr', 'image/tga'];
         if (!validTypes.includes(file.type)) {
             alert('[WARN] Invalid file type. Please select an image file.');
             return;
