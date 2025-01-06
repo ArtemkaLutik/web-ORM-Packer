@@ -25,11 +25,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const roughnessToggle = document.querySelector('#toggle-roughness').checked;
         const metallicToggle = document.querySelector('#toggle-metallic').checked;
 
-        const aoValue = aoToggle ? parseInt(document.querySelector('.SliderRow:nth-child(1) .CustomSlider').value, 10) : 0;
-        const roughnessValue = roughnessToggle ? parseInt(document.querySelector('.SliderRow:nth-child(2) .CustomSlider').value, 10) : 0;
-        const metallicValue = metallicToggle ? parseInt(document.querySelector('.SliderRow:nth-child(3) .CustomSlider').value, 10) : 0;
+        let aoValue;
+        if (aoToggle) {
+            const slider = document.querySelector('.SliderRow:nth-child(1) .CustomSlider');
+            aoValue = slider ? parseInt(slider.value || 0, 10) : 0;
+        } else {
+            aoValue = 0;
+        }
+        let roughnessValue;
+        if (roughnessToggle) {
+            const slider = document.querySelector('.SliderRow:nth-child(2) .CustomSlider');
+            roughnessValue = slider ? parseInt(slider.value || 0, 10) : 0;
+        } else {
+            roughnessValue = 0;
+        }
+        let metallicValue;
+        if (metallicToggle) {
+            const slider = document.querySelector('.SliderRow:nth-child(3) .CustomSlider');
+            metallicValue = slider ? parseInt(slider.value || 0, 10) : 0;
+        } else {
+            metallicValue = 0;
+        }
 
-        const outputSize = parseInt(document.querySelector('#output-size').value, 10);
+        let outputSize = parseInt(document.querySelector('#output-size').value, 10);
+        if (isNaN(outputSize)) {
+            const inputImages = [aoFile, roughnessFile, metallicFile].filter(Boolean);
+            if (inputImages.length > 0) {
+                const firstImage = await readImage(inputImages[0], 2048); // Default maximum size
+                outputSize = firstImage.width; // Use input image resolution
+            } else {
+                outputSize = 2048; // Default fallback
+            }
+        }
         const outputSetName = document.querySelector('#output-set-name').value || 'ORMTexture';
 
         const canvas = document.createElement('canvas');
