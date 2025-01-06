@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         field.setAttribute('data-label', field.textContent.trim()); // Save the default label
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = 'image/png, image/jpeg, image/exr, image/tga';
+        fileInput.accept = '.png, .jpeg, .jpg, .exr, .tga';
         fileInput.style.display = 'none';
         field.appendChild(fileInput);
 
@@ -61,8 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleFileSelection(field, file) {
         // Validate file type
-        const validTypes = ['image/png', 'image/jpeg', 'image/exr', 'image/tga'];
-        if (!validTypes.includes(file.type)) {
+        const validExtensions = ['png', 'jpg', 'jpeg', 'exr', 'tga'];
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        if (!validExtensions.includes(fileExtension)) {
             alert('[WARN] Invalid file type. Please select an image file.');
             return;
         }
