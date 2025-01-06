@@ -22,33 +22,36 @@
         <div class="Section">
             <div class="SlidersContainer">
                 <!-- Missing AO -->
+                <div class="InputLabel" style="margin-bottom: 4px">Missing AO</div>
                 <div class="SliderRow">
-                    <div class="SectionText">Missing AO</div>
+
                     <div class="ToggleWrapper">
                         <input type="checkbox" class="ToggleInput" id="toggle-ao">
                         <label for="toggle-ao" class="ToggleTrack"></label>
                     </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0" disabled>
                 </div>
 
                 <!-- Missing Metallic -->
+                <div class="InputLabel"  style="margin-bottom: 4px">Missing Metallic</div>
                 <div class="SliderRow">
-                    <div class="SectionText">Missing Metallic</div>
+
                     <div class="ToggleWrapper">
                         <input type="checkbox" class="ToggleInput" id="toggle-metallic">
                         <label for="toggle-metallic" class="ToggleTrack"></label>
                     </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0" disabled>
                 </div>
 
                 <!-- Missing Roughness -->
+                <div class="InputLabel" style="margin-bottom: 4px">Missing Roughness</div>
                 <div class="SliderRow">
-                    <div class="SectionText">Missing Roughness</div>
+
                     <div class="ToggleWrapper">
                         <input type="checkbox" class="ToggleInput" id="toggle-roughness">
                         <label for="toggle-roughness" class="ToggleTrack"></label>
                     </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0" disabled>
                 </div>
             </div>
         </div>
@@ -81,6 +84,6 @@
             </div>
         </div>
     </div>
-    
+    <script src="logic.js"></script>
 </body>
 </html>
