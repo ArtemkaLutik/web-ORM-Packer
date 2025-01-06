@@ -210,3 +210,52 @@ body {
     flex-direction: column; /* Stack rows vertically */
     gap: 15px; /* Add space between rows */
 }
+
+
+/* Input Fields Container */
+.InputFieldsContainer {
+    display: flex;
+    justify-content: space-between; /* Space out fields evenly */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between input fields */
+    width: 100%; /* Full width of the section */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Individual Input Field */
+.InputField {
+    display: flex;
+    flex-direction: column; /* Stack label above input box */
+    align-items: flex-start; /* Align label and input to the left */
+    flex: 1; /* Allow input fields to stretch equally */
+    max-width: 60%; /* Limit width of each input field */
+    gap: 1px; /* Space between label and input box */
+}
+
+/* Label Styling */
+.InputLabel {
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-transform: uppercase; /* Make text uppercase */
+    letter-spacing: 1px; /* Add spacing for a clean look */
+    margin-bottom: 4px; /* Space below label */
+}
+
+/* Input Box Styling */
+.InputBox {
+    width: 100%; /* Full width within its container */
+    padding: 10px;
+    background-color: #0F0F0F; /* Dark background */
+    color: #FFFFFF; /* White text */
+    border: 1px solid #0f0f0f; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 14px; /* Adjust font size */
+    outline: none; /* Remove outline on focus */
+    transition: border-color 0.3s ease; /* Smooth focus effect */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.InputBox:focus {
+    border-color: #CE7D63; /* Highlight border on focus */
+}
