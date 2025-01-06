@@ -1,0 +1,212 @@
+/*--------------------BASE--------------------*/
+body {
+    background-color: #0F0F0F;
+    font-family: 'Roboto Mono', monospace;
+    display: flex; /* Enable flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    margin: 0; /* Remove default body margin */
+}
+
+.BtnDefault {
+    background-color: #0F0F0F;
+    border: none;
+    border-radius: 6px; /* Keep buttons with 6px for smaller feel */
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    font-weight: 500; /* Medium weight */
+    color: #81807E; /* Text color */
+}
+
+.BtnDefault:hover {
+    transform: scale(0.8); /* Makes the button 10% bigger */
+    background-color: #CE7D63;
+    color: #0F0F0F;
+}
+
+.SectionBorder {
+    display: flex;
+    width: 70%;
+    flex-direction: column; /* Stack sections vertically */
+    justify-content: flex-start; /* Align sections at the start */
+    margin: 10px 10px 0 10px; /* Outer margin for the border */
+    padding: 10px; /* Inner padding */
+    background-color: transparent; /* Removes fill */
+    border: 0.1em solid #1F1F1F; /* Adds the stroke */
+    box-sizing: border-box; /* Ensures the stroke stays inside */
+    border-radius: 16px; /* Larger border radius for outer container */
+    overflow: hidden; /* Prevent content from spilling out */
+}
+
+.Section {
+    display: flex; /* Flexbox layout */
+    justify-content: flex-start; /* Align items to the start horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 15px; /* Space between the elements */
+    padding: 12px;
+    background-color: #1A1A1A;
+    border-radius: 8px; /* Rounded corners */
+    flex-grow: 1;
+    margin-bottom: 10px; /* Add margin between sections */
+    color: #FFFFFF; /* Text color for visibility */
+    box-sizing: border-box; /* Include padding and border in width/height calculations */
+}
+
+.Section:last-child {
+    margin-bottom: 0; /* Remove margin at the bottom of the last section */
+}
+
+/* Style for the text label */
+.SectionText {
+    flex: 0 0 auto; /* Ensure the text takes up its natural width */
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    white-space: nowrap; /* Prevent the label from wrapping */
+    margin-right: 10px; /* Add space to the right of the label */
+}
+
+/*--------------------DRAG AND DROPS--------------------*/
+
+.SimpleDragDropField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(33.33% - 10px); /* Equal width for 3 fields with spacing */
+    min-width: 100px;
+    height: 40px;
+    border: 1.5px dashed #81807E; /* Dashed border */
+    border-radius: 8px; /* Smaller border radius for drag-and-drop fields */
+    background-color: #0F0F0F;
+    color: #81807E; /* Light text color */
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.SimpleDragDropField:hover {
+    background-color: #CE7D63;
+    color: #0F0F0F;
+    border-color: #CE7D63;
+}
+/*--------------------Toggles--------------------*/
+/* Toggle Wrapper */
+.ToggleWrapper {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+/* Hidden Checkbox */
+.ToggleInput {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Background Track */
+.ToggleTrack {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1A1A1A; /* Dark background for disabled */
+    border: 2px solid #CE7D63; /* Border color */
+    border-radius: 20px; /* Fully rounded background */
+    transition: 0.4s;
+}
+
+/* Moving Handle */
+.ToggleTrack:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 2px; /* Initial position */
+    top: 2px; /* Center vertically */
+    background-color: #CE7D63; /* Circle color for disabled */
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+/* Enabled State */
+.ToggleInput:checked + .ToggleTrack {
+    background-color: #CE7D63; /* Background color for enabled */
+}
+
+.ToggleInput:checked + .ToggleTrack:before {
+    transform: translateX(14px); /* Move circle to the right */
+    background-color: #FFFFFF; /* Circle color for enabled */
+}
+
+/* Slider Styling */
+.CustomSlider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1; /* Take up remaining space */
+    height: 4px; /* Track height */
+    background: #1A1A1A; /* Dark background */
+    border-radius: 5px; /* Rounded track edges */
+    outline: none; /* Remove outline */
+    cursor: pointer; /* Pointer cursor for interaction */
+    transition: background 0.3s; /* Smooth transition */
+}
+
+/* Slider Track for Enabled State */
+.CustomSlider:enabled {
+    background: #CE7D63; /* Copper color for the track */
+}
+
+/* Slider Thumb */
+.CustomSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; /* Thumb width */
+    height: 14px; /* Thumb height */
+    background: #0F0F0F; /* Dark thumb */
+    border: 2px solid #CE7D63; /* Copper border */
+    border-radius: 50%; /* Rounded thumb */
+    cursor: pointer; /* Pointer cursor */
+    transition: transform 0.2s ease; /* Smooth scaling on interaction */
+}
+
+.CustomSlider::-moz-range-thumb {
+    width: 14px; /* Thumb width */
+    height: 14px; /* Thumb height */
+    background: #0F0F0F; /* Dark thumb */
+    border: 2px solid #CE7D63; /* Copper border */
+    border-radius: 50%; /* Rounded thumb */
+    cursor: pointer; /* Pointer cursor */
+}
+
+
+/* Slider for Disabled State */
+.CustomSlider:disabled {
+    background: #40302B; /* Darker background for disabled state */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+.CustomSlider:disabled::-webkit-slider-thumb {
+    background: #272727; /* Dark thumb for disabled state */
+    border: 2px solid #40302B; /* Darker border for disabled state */
+}
+
+/* Slider Row Styling */
+.SliderRow {
+    display: flex; /* Flexbox layout for each row */
+    align-items: center; /* Center items vertically */
+    gap: 15px; /* Space between elements */
+    margin-bottom: 10px; /* Space between rows */
+}
+
+/* Sliders Container */
+.SlidersContainer {
+    width: 100%;
+    flex-direction: column; /* Stack rows vertically */
+    gap: 15px; /* Add space between rows */
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects/Playground</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+<body>
+    <div class="SectionBorder">
+        <div class="Section">
+            <div class="SectionText">
+                ORM TEXTURE PACKER
+            </div>
+        </div>
+        <div class="Section">
+            <div class="SimpleDragDropField">AO</div>
+            <div class="SimpleDragDropField">Roughness</div>
+            <div class="SimpleDragDropField">Metallic</div>
+        </div>
+        <div class="Section">
+            <div class="SlidersContainer">
+                <!-- Missing AO -->
+                <div class="SliderRow">
+                    <div class="SectionText">Missing AO</div>
+                    <div class="ToggleWrapper">
+                        <input type="checkbox" class="ToggleInput" id="toggle-ao">
+                        <label for="toggle-ao" class="ToggleTrack"></label>
+                    </div>
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                </div>
+
+                <!-- Missing Metallic -->
+                <div class="SliderRow">
+                    <div class="SectionText">Missing Metallic</div>
+                    <div class="ToggleWrapper">
+                        <input type="checkbox" class="ToggleInput" id="toggle-metallic">
+                        <label for="toggle-metallic" class="ToggleTrack"></label>
+                    </div>
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                </div>
+
+                <!-- Missing Roughness -->
+                <div class="SliderRow">
+                    <div class="SectionText">Missing Roughness</div>
+                    <div class="ToggleWrapper">
+                        <input type="checkbox" class="ToggleInput" id="toggle-roughness">
+                        <label for="toggle-roughness" class="ToggleTrack"></label>
+                    </div>
+                    <input type="range" class="CustomSlider" min="0" max="255" value="0">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="Section">
+            Fields
+        </div>
+        <div class="Section">
+            <div class="SectionButtons">
+                <button class="BtnDefault">Convert</button>
+                <button class="BtnDefault" id="BtnDownload">Download</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
