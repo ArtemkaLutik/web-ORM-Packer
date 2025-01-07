@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dragDropFields = document.querySelectorAll('.SimpleDragDropField');
 
     dragDropFields.forEach((field) => {
-        field.setAttribute('data-label', field.textContent.trim()); // Save the default label
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = '.png, .jpeg, .jpg, .exr, .tga';
@@ -15,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         field.appendChild(fileInput);
 
         field.file = null; // Attach file property to the field
+        field.setAttribute('data-label', field.textContent.trim()); // Save the default label
 
         // Handle clicking on the field to choose a file
         field.addEventListener('click', () => {
@@ -60,11 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function handleFileSelection(field, file) {
-        // Validate file type
+        // Validate file type by extension as a fallback
         const validExtensions = ['png', 'jpg', 'jpeg', 'exr', 'tga'];
         const fileExtension = file.name.split('.').pop().toLowerCase();
+
         if (!validExtensions.includes(fileExtension)) {
-            alert('[WARN] Invalid file type. Please select an image file.');
+            alert('[WARN] Invalid file type. Please select a supported image file (.png, .jpg, .exr, .tga).');
             return;
         }
 
@@ -138,30 +139,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const roughnessFile = dragDropFieldsArray[4].file;
         const metallicFile = dragDropFieldsArray[5].file;
 
-        const filesToProcess = [albedoFile, aoFile, roughnessFile, metallicFile, normalFile, displacementFile].filter(Boolean);
-        const processedFiles = [];
-
-        for (let i = 0; i < filesToProcess.length; i++) {
-            await new Promise((resolve) => setTimeout(resolve, 500)); // Simulating processing delay
-            processedFiles.push(filesToProcess[i]);
-            progressBar.style.width = `${((i + 1) / filesToProcess.length) * 100}%`;
-        }
-
-        console.log('[INFO] Packing into ZIP');
+        const filesToProcess = [
+            { file: albedoFile, name: `T_${outputName}_Albedo` },
+            { file: normalFile, name: `T_${outputName}_Normal` },
+            { file: displacementFile, name: `T_${outputName}_Displacement` },
+        ].filter(item => item.file);
 
         const zip = new JSZip();
-        if (albedoFile) {
-            zip.file(`T_${outputName}_Albedo.png`, albedoFile);
+
+        for (let i = 0; i < filesToProcess.length; i++) {
+            const { file, name } = filesToProcess[i];
+            zip.file(`${name}.${getFileExtension(file.name)}`, file);
+
+            // Update progress bar
+            progressBar.style.width = `${((i + 1) / (filesToProcess.length + 1)) * 100}%`;
+            await new Promise(resolve => setTimeout(resolve, 10)); // Simulate processing delay
         }
+
         if (aoFile || roughnessFile || metallicFile) {
             const ormTexture = await createOrmTexture(aoFile, roughnessFile, metallicFile, useGlossMap, outputSize);
             zip.file(`T_${outputName}_ORM.png`, ormTexture);
-        }
-        if (normalFile) {
-            zip.file(`T_${outputName}_Normal.png`, normalFile);
-        }
-        if (displacementFile) {
-            zip.file(`T_${outputName}_Displacement.png`, displacementFile);
+
+            // Update progress bar for ORM texture
+            progressBar.style.width = `100%`;
         }
 
         zip.generateAsync({ type: 'blob' }).then((blob) => {
@@ -220,5 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             reader.readAsDataURL(file);
         });
+    }
+
+    function getFileExtension(fileName) {
+        return fileName.split('.').pop().toLowerCase();
     }
 });
