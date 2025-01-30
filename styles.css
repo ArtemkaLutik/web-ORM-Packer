@@ -1,13 +1,13 @@
 /*-------------------- VARIABLES --------------------*/
 /* Define global variables for colors, sizes, and fonts */
 :root {
-    --color-background: #0F0F0F; /* Background color */
-    --color-section-bg: #1A1A1A; /* Section background */
-    --color-border: #1F1F1F; /* Border color */
+    --color-background: #000000; /* Background color */
+    --color-section-bg: #101010; /* Section background */
+    --color-border: #0c0c0c; /* Border color */
     --color-text: #FFFFFF; /* Main text color */
-    --color-muted-text: #81807E; /* Muted text color */
-    --color-accent: #CE7D63; /* Accent color for highlights */
-    --color-disabled: #40302B; /* Disabled slider background */
+    --color-muted-text: #3c3c3c; /* Muted text color */
+    --color-accent: #c80000; /* Accent color for highlights */
+    --color-disabled: rgba(200, 0, 0, 0.4); /* Disabled slider background */
     --color-thumb-disabled: #272727; /* Disabled slider thumb */
 
     --radius-small: 5px; /* Small corner radius */
