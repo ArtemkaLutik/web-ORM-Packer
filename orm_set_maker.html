@@ -30,32 +30,34 @@
         </div>
         <div class="Section">
             <div class="SlidersContainer">
-                <!-- Missing AO -->
+                <!-- AO Slider -->
                 <div class="InputLabel"  style="margin-bottom: 4px">Missing AO</div>
                 <div class="SliderRow">
                     <div class="ToggleWrapper">
                         <input type="checkbox" class="ToggleInput" id="toggle-ao">
                         <label for="toggle-ao" class="ToggleTrack"></label>
                     </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="255" disabled>
+                    <input type="range" id="ao-slider" class="CustomSlider" min="0" max="255" value="255" disabled>
                 </div>
-                <!-- Missing Metallic -->
+
+                <!-- Roughness Slider -->
+                <div class="InputLabel"  style="margin-bottom: 4px">Missing Roughness</div>
+                <div class="SliderRow">
+                    <div class="ToggleWrapper">
+                        <input type="checkbox" class="ToggleInput" id="toggle-roughness">
+                        <label for="toggle-roughness" class="ToggleTrack"></label>
+                    </div>
+                    <input type="range" id="roughness-slider" class="CustomSlider" min="0" max="255" value="0" disabled>
+                </div>
+
+                <!-- Metallic Slider -->
                 <div class="InputLabel"  style="margin-bottom: 4px">Missing Metallic</div>
                 <div class="SliderRow">
                     <div class="ToggleWrapper">
                         <input type="checkbox" class="ToggleInput" id="toggle-metallic">
                         <label for="toggle-metallic" class="ToggleTrack"></label>
                     </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="0" disabled>
-                </div>
-                <!-- Missing Roughness -->
-                <div class="InputLabel" style="margin-bottom: 4px">Missing Roughness</div>
-                <div class="SliderRow">
-                    <div class="ToggleWrapper">
-                        <input type="checkbox" class="ToggleInput" id="toggle-roughness">
-                        <label for="toggle-roughness" class="ToggleTrack"></label>
-                    </div>
-                    <input type="range" class="CustomSlider" min="0" max="255" value="0" disabled>
+                    <input type="range" id="metallic-slider" class="CustomSlider" min="0" max="255" value="0" disabled>
                 </div>
             </div>
         </div>

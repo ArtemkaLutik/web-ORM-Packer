@@ -5,6 +5,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const aoSlider = document.querySelector('#toggle-ao').closest('.SliderRow').querySelector('.CustomSlider');
     aoSlider.value = 255;
 
+// Get all toggle inputs
+    const toggles = document.querySelectorAll('.ToggleInput');
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener('change', () => {
+            const slider = toggle.closest('.SliderRow').querySelector('.CustomSlider');
+            if (!toggle.checked) {
+                // Determine the default value based on the slider's ID or class
+                const sliderId = slider.id || slider.className;
+                const defaultValue = sliderId.includes('ao') ? 255 : 0; // AO goes to 255, others to 0
+                resetSliderToDefault(slider, defaultValue);
+            }
+        });
+    });
+// Function to reset slider to default value with animation
+    function resetSliderToDefault(slider, defaultValue) {
+        const currentValue = parseInt(slider.value, 10);
+        const duration = 300; // Animation duration in milliseconds
+        const startTime = performance.now();
+
+        function animateSlider(timestamp) {
+            const elapsedTime = timestamp - startTime;
+            const progress = Math.min(elapsedTime / duration, 1); // Normalize progress (0 to 1)
+            const newValue = currentValue + (defaultValue - currentValue) * progress;
+
+            slider.value = newValue;
+
+            if (progress < 1) {
+                requestAnimationFrame(animateSlider); // Continue animation
+            }
+        }
+
+        requestAnimationFrame(animateSlider); // Start animation
+    }
+
+
     // Initialize drag and drop fields
     const dragDropFields = document.querySelectorAll('.SimpleDragDropField');
 

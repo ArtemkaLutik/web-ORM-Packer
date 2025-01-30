@@ -195,7 +195,7 @@ body {
     border-radius: var(--radius-small); /* Small rounded corners */
     outline: none; /* Remove outline */
     cursor: pointer; /* Pointer cursor */
-    transition: background 0.3s; /* Smooth transition */
+    transition: background 0.3s, width 0.3s ease, height 0.3s ease; /* Smooth transitions */
 }
 
 .CustomSlider:enabled {
@@ -205,22 +205,53 @@ body {
 .CustomSlider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Remove default styles */
     appearance: none; /* Remove default styles */
-    width: 14px; /* Thumb width */
-    height: 14px; /* Thumb height */
+    width: 14px; /* Default thumb width */
+    height: 14px; /* Default thumb height */
     background: var(--color-background); /* Thumb background */
     border: 2px solid var(--color-accent); /* Thumb border */
     border-radius: 50%; /* Fully rounded */
     cursor: pointer; /* Pointer cursor */
-    transition: transform 0.2s ease; /* Smooth scaling */
+    transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease; /* Smooth scaling */
+}
+
+.CustomSlider:hover::-webkit-slider-thumb {
+    width: 16px; /* Slightly larger width */
+    height: 16px; /* Slightly larger height */
+}
+
+.CustomSlider:active::-webkit-slider-thumb {
+    width: 18px; /* Even larger width */
+    height: 18px; /* Even larger height */
 }
 
 .CustomSlider::-moz-range-thumb {
-    width: 14px; /* Thumb width */
-    height: 14px; /* Thumb height */
+    width: 14px; /* Default thumb width */
+    height: 14px; /* Default thumb height */
     background: var(--color-background); /* Thumb background */
     border: 2px solid var(--color-accent); /* Thumb border */
     border-radius: 50%; /* Fully rounded */
     cursor: pointer; /* Pointer cursor */
+    transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease; /* Smooth scaling */
+}
+
+.CustomSlider:hover::-moz-range-thumb {
+    width: 16px; /* Slightly larger width */
+    height: 16px; /* Slightly larger height */
+}
+
+.CustomSlider:active::-moz-range-thumb {
+    width: 18px; /* Even larger width */
+    height: 18px; /* Even larger height */
+}
+
+.CustomSlider:disabled {
+    background: var(--color-disabled); /* Disabled slider background */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+.CustomSlider:disabled::-webkit-slider-thumb {
+    background: var(--color-thumb-disabled); /* Disabled thumb background */
+    border: 2px solid var(--color-disabled); /* Disabled thumb border */
 }
 
 .CustomSlider:disabled {
