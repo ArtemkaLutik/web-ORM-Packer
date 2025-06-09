@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize drag and drop fields
     const dragDropFields = document.querySelectorAll('.SimpleDragDropField');
+    const outputSizeInput = document.querySelector('#output-size');
+
 
     dragDropFields.forEach((field) => {
         const fileInput = document.createElement('input');
@@ -124,6 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
             field.style.transform = 'scale(1)';
             field.style.transition = 'transform 0.3s ease';
         }, 100);
+        // read the image so we can grab its natural dimensions
+        const img = new Image();
+        img.onload = () => {
+        // if it’s square, use width, otherwise take the larger side
+        const size = img.naturalWidth === img.naturalHeight
+            ? img.naturalWidth
+            : Math.max(img.naturalWidth, img.naturalHeight);
+        outputSizeInput.value = size;
+        console.log(`[INFO] Output size set to ${size}px`);
+        };
+        // this will fire the onload above
+        img.src = URL.createObjectURL(file);
+
     }
 
     // Initialize sliders and toggles

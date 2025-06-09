@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  …
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="SectionBorder">
+    <div class="Section">
+      <div class="SectionText">Normal Map Maker</div>
+    </div>
+
+    <div class="Section">
+      <div class="SimpleDragDropField" id="drop-texture">
+        Click or drag & drop a texture here
+        <input id="file-input" type="file" accept="image/*" hidden>
+      </div>
+    </div>
+
+    <div class="Section">
+      <div class="SlidersContainer">
+        <!-- Black Point -->
+<div class="SliderRow">
+  <div class="InputLabel">Black Point</div>
+  <input
+    id="black-point-slider"
+    class="CustomSlider"
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    value="0.00"
+  >
+  <div class="SliderValue"><span id="black-point-value">0.00</span></div>
+</div>
+
+<!-- Mid Point (gamma) -->
+<div class="SliderRow">
+  <div class="InputLabel">Mid Point</div>
+  <input
+    id="mid-point-slider"
+    class="CustomSlider"
+    type="range"
+    min="0.1"
+    max="5"
+    step="0.01"
+    value="1.00"
+  >
+  <div class="SliderValue"><span id="mid-point-value">1.00</span></div>
+</div>
+
+<!-- White Point -->
+<div class="SliderRow">
+  <div class="InputLabel">White Point</div>
+  <input
+    id="white-point-slider"
+    class="CustomSlider"
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    value="1.00"
+  >
+  <div class="SliderValue"><span id="white-point-value">1.00</span></div>
+</div>
+
+        <div class="SliderRow">
+          <div class="InputLabel">Blur/Sharpen</div>
+          <input id="blur-slider" class="CustomSlider" type="range" min="-5" max="5" step="0.1" value="0">
+          <div class="SliderValue"><span id="blur-value">0</span></div>
+        </div>
+        <div class="SliderRow">
+          <div class="InputLabel">Strength</div>
+          <input id="strength-slider" class="CustomSlider" type="range" min="0" max="5" step="0.1" value="1.0">
+          <div class="SliderValue"><span id="strength-value">1.0</span></div>
+        </div>
+        <div class="SliderRow">
+          <div class="ToggleWrapper">
+            <input id="invert-toggle" class="ToggleInput" type="checkbox">
+            <label for="invert-toggle" class="ToggleTrack"></label>
+          </div>
+          <div>Invert Y</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="Section">
+      <button id="download-btn" class="BtnDefault" disabled>Download Normal Map</button>
+    </div>
+
+    <div class="Section">
+      <div id="preview-3d" class="Preview3D" style="display: block; margin-left: auto; margin-right: auto;"></div>
+    </div>
+  </div>
+
+  <script type="module" src="normal_map_app.js"></script>
+</body>
+</html>
